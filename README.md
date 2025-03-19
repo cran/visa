@@ -1,36 +1,39 @@
 # visa
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/visa)](https://CRAN.R-project.org/package=visa)
 [![R-CMD-check](https://github.com/kang-yu/visa/workflows/R-CMD-check/badge.svg)](https://github.com/kang-yu/visa/actions)
-[![Travis build status](https://travis-ci.org/kang-yu/visa.svg?branch=master)](https://travis-ci.org/kang-yu/visa)
+[![Travis build status](https://travis-ci.org/kang-yu/visa.svg?branch=master)](https://app.travis-ci.com/gh/kang-yu/visa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8rxdgcr4ro8ga0s4?svg=true)](https://ci.appveyor.com/project/kang-yu/visa)
-[![codecov](https://codecov.io/gh/kang-yu/visa/branch/master/graph/badge.svg)](https://codecov.io/gh/kang-yu/visa)
-[![HitCount](https://hits.dwyl.com/kang-yu/visa.svg)](https://hits.dwyl.com/kang-yu/visa)
+[![R-CMD-check](https://github.com/kang-yu/visa/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kang-yu/visa/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/kang-yu/visa/graph/badge.svg)](https://app.codecov.io/gh/kang-yu/visa)
 <!-- badges: end -->
 
-This R package is to facilitate Vegetation Imaging Spectroscopy Analysis (VISA). For more details of this package, you can  `browseVignettes("visa")`. 
+This R package is to facilitate Vegetation Imaging Spectroscopy Analysis (VISA). 
+For more details of this package, you can  `browseVignettes("visa")`. 
 
 
 ## Installation
 
 ### install the released version from CRAN:
-
+The very first version of visa (0.1.0) is on CRAN. 
 ``` r
-# install.packages() # does not work currently
+install.packages("visa")
 ``` 
 
-You might encounter problem of package dependencies, such as some functions depend on `ggplot2`, `ggpmisc`. In such cases, you would have to install the all the dependencies.
-
+You might encounter problem of package dependencies, such as some functions 
+depend on `ggplot2`, `ggpmisc`. In such cases, you would have to install all 
+the dependencies.
 
 ### install the dev-version from GitHub:
+The current version on GitHub is v1.0.0. 
 
 ``` r
 if (!require("devtools")) install.packages("devtools")
-# devtools::install_github("kang-yu/visa") # install without vignettes
-devtools::install_github("kang-yu/visa", build_opts = c("--no-resave-data", "--no-manual"))
+devtools::install_github("kang-yu/visa")
+
 ``` 
-
-You might encounter [this problem of install_github()](https://github.com/r-lib/devtools/issues/1978), and in this case, you could try update the {remotes} `devtools::install_github("r-lib/remotes")`.
-
+* The v1.0.0 requires support for interactive plotting. Installation on Max OS may 
+cause error [X11 library is missing](https://github.com/kang-yu/visa/issues/3). 
 
 ## Usage
 

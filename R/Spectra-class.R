@@ -1,9 +1,10 @@
 #' @include visa.R
 #'
-#' Class 'Spectra'/'SpectraDatabase'
+#' Class 'Spectra'/'SpectraLibrary'
 #'
-#' An S4 Class `Spectra`, with five slots of data.
-#' It has `SpectraDatabase` as the alias.
+#' An S4 Class \code{Spectra} with five slots: \code{spectra}, \code{wavelength},
+#' \code{w.unit}, and \code{data}.
+#' It has `SpectraLibrary` as the alias.
 #'
 #' @name Spectra-class
 #' @rdname Spectra-class
@@ -43,22 +44,22 @@ setMethod("initialize", "Spectra",
               .Object
           }
 )
-#' Class 'SpectraDatabase'
+#' Class 'SpectraLibrary'
 #'
-#' SpectraDatabase is an extended 'Spectra' class, with associated vegetation data ('data')
+#' SpectraLibrary is an extended 'Spectra' class, with associated vegetation data ('data')
 #' in a \link{data.frame}.
 #'
-#' @name SpectraDatabase-class
-#' @rdname SpectraDatabase-class
-#' @aliases SpectraDatabase-class,spectra.database
+#' @name SpectraLibrary-class
+#' @rdname SpectraLibrary-class
+#' @aliases SpectraLibrary-class,spectra.library, speclib
 #' @docType class
 #' @slot spectra A matrix
 #' @slot wavelength A numeric vector
 #' @slot w.unit A character string
 #' @slot data A data.frame of vegetation data corresponding to the spectra
 #' @export
-#' @exportClass SpectraDatabase
-setClass("SpectraDatabase",
+#' @exportClass SpectraLibrary
+setClass("SpectraLibrary",
          contains = "Spectra",
          slots = c(data="data.frame"),
          validity = function(object){
@@ -68,7 +69,7 @@ setClass("SpectraDatabase",
            TRUE
          }
 )
-setMethod("initialize", "SpectraDatabase",
+setMethod("initialize", "SpectraLibrary",
           function(.Object,
                    spectra = matrix(0),
                    wavelength = numeric(0),
@@ -81,7 +82,7 @@ setMethod("initialize", "SpectraDatabase",
           }
 )
 
-#' Create a Spectra or SpectraDatabase
+#' Create a Spectra or SpectraLibrary
 #'
 #' Constructor \code{as.spectra} creates a Spectra object.
 #'
@@ -103,16 +104,16 @@ as.spectra <- function(spectra = matrix(0),
                        data = data.frame(), ...){
   return(methods::new("Spectra", spectra, wavelength, w.unit, data, ...))
 }
-#' Create a Spectra or SpectraDatabase
+#' Create a Spectra or SpectraLibrary
 #'
-#' Constructor \code{as.spectra.database} creates a SpectraDatabase object.
+#' Constructor \code{as.spectra.library} creates a SpectraLibrary object.
 #'
 #' @rdname Spectra-class
 #' @examples
-#' s <- as.spectra.database(matrix(1:100, 4), 1:25, "nm", data.frame(x = letters[1:4]))
+#' s <- as.spectra.library(matrix(1:100, 4), 1:25, "nm", data.frame(x = letters[1:4]))
 #' str(s)
 #' @export
-as.spectra.database <- function(spectra = matrix(0),
+as.spectra.library <- function(spectra = matrix(0),
                                 wavelength = numeric(0),
                                 w.unit = "nm",
                                 data = data.frame(), ...){
@@ -120,13 +121,14 @@ as.spectra.database <- function(spectra = matrix(0),
 }
 
 
+
 #' Class 'SpectraMatrix'
 #'
 #' SpectraMatrix is a extended 'Spectra' class.
 #'
 #' @name SpectraMatrix-class
-#' @rdname SpectraMaxtrix-class
-#' @aliases SpectraMaxtrix-class,spectra.maxtrix
+#' @rdname SpectraMatrix-class
+#' @aliases SpectraMatrix-class, spectra.maxtrix
 #' @docType class
 #' @export
 #' @exportClass SpectraMatrix
@@ -155,13 +157,13 @@ setMethod("initialize", "SpectraMatrix",
 #' Constructor \code{as.spectra.matrix} creates a SpectraMatrix object.
 #'
 #' @name as.spectra.matrix
-#' @rdname SpectraMaxtrix-class
+#' @rdname SpectraMatrix-class
 #' @param spectra A matrix
 #' @param wavelength A numeric vector
 #' @param w.unit A character string
 #'
 #' @return
-#'   \item{sdf}{Returns a SpectraDataFrame.}
+#'   \item{sdf}{Returns a SpectraDataframe.}
 #'
 #' @examples
 #' smatrix <- as.spectra.matrix(matrix(1:10, 1), 1:10, "nm")
@@ -178,22 +180,22 @@ as.spectra.matrix <- function(spectra = matrix(0),
 }
 
 
-#' Class 'SpectraDataFrame'
+#' Class 'SpectraDataframe'
 #'
-#' SpectraDataFrame is an extended 'Spectra' class, with associated vegetation data ('data')
+#' SpectraDataframe is an extended 'Spectra' class, with associated vegetation data ('data')
 #' in a \link{data.frame}.
 #'
-#' @name SpectraDataFrame-class
-#' @rdname SpectraDataFrame-class
-#' @aliases SpectraDataFrame,spectra.data.frame
+#' @name SpectraDataframe-class
+#' @rdname SpectraDataframe-class
+#' @aliases SpectraDataframe, spectra.dataframe
 #' @docType class
 #' @slot spectra A matrix
 #' @slot wavelength A numeric vector
 #' @slot w.unit A character string
 #' @slot data A data.frame of vegetation data corresponding to the spectra
 #' @export
-#' @exportClass SpectraDataFrame
-setClass("SpectraDataFrame",
+#' @exportClass SpectraDataframe
+setClass("SpectraDataframe",
          contains = "Spectra",
          slots = c(data="data.frame"),
          validity = function(object){
@@ -203,7 +205,7 @@ setClass("SpectraDataFrame",
            TRUE
          }
 )
-setMethod("initialize", "SpectraDataFrame",
+setMethod("initialize", "SpectraDataframe",
           function(.Object,
                    spectra = matrix,
                    wavelength = numeric,
@@ -215,12 +217,12 @@ setMethod("initialize", "SpectraDataFrame",
             .Object
           }
 )
-#' Create a SpectraDataFrame
+#' Create a SpectraDataframe
 #'
-#' Constructor \code{as.spectra.data.frame} function creates a SpectraDataFrame object, which is equivalent to the use of \link{as.specdf}.
+#' Constructor \code{as.spectra.dataframe} function creates a SpectraDataframe object, which is equivalent to the use of \link{as.specdf}.
 #'
-#' @name as.spectra.data.frame
-#' @rdname SpectraDataFrame
+#' @name as.spectra.dataframe
+#' @rdname SpectraDataframe
 #' @aliases as.specdf
 #' @param data A data.frame
 #' @param spectra A matrix
@@ -229,21 +231,20 @@ setMethod("initialize", "SpectraDataFrame",
 #' @param ... Other options for similar format of variables
 #'
 #' @return
-#'   \item{sdf}{Returns a SpectraDataFrame.}
+#'   \item{sdf}{Returns a SpectraDataframe.}
 #' @examples
-#' sdf <- as.spectra.data.frame(matrix(1:10, 1), 1:10, "nm", data.frame(a = 1, b =2))
+#' sdf <- as.spectra.dataframe(matrix(1:10, 1), 1:10, "nm", data.frame(a = 1, b =2))
 #' str(sdf)
 #' @export
-as.spectra.data.frame <- function(spectra = matrix(0),
-                                  wavelength = numeric(0),
-                                  w.unit = character(0),
-                                  data = data.frame(0), ...){
-  sls <- methods::new("SpectraDataFrame", spectra, wavelength, w.unit, data)
+as.spectra.dataframe <- function(spectra = matrix(0),
+                                 wavelength = numeric(0),
+                                 w.unit = character(0),
+                                 data = data.frame(0), ...){
+  sls <- methods::new("SpectraDataframe", spectra, wavelength, w.unit, data)
   spectra <- sls@spectra
   colnames(spectra) <- paste(wavelength, w.unit)
   sdf <- sls@data
   sdf$spectra <- spectra
   sdf
 }
-
 

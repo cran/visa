@@ -1,10 +1,10 @@
-#' Example data in the Spectra/SpectraDatabase format.
+#' Example data in the Spectra/SpectraLibrary format.
 #'
 #' A S4 data structure containing the plant spectra and nitorgen (N) content. Spectra is organized as a matrix and is stored as a slot,
-#' named 'spectra'. The corresponding N content is stored in the slot 'data', which is a data.frame to be used for storing vegetation traits,
-#' such as here the plant N content.
+#' named 'spectra'. The corresponding N content is stored in the slot 'data', which is a data.frame used for storing supporting data and
+#' plant/vegetation traits, such as here the plant N content.
 #'
-#' @aliases Data-SpectraDatabase,Data-Spectra
+#' @aliases Data-SpectraLibrary, Data-speclib, Data-Spectra
 #' @format A Spectra object with 19 rows and 4 slots (spectra, wavelength, w.unit, data).
 #'
 #' \describe{
@@ -12,11 +12,11 @@
 #'   \item{wavelength}{A vector of wavelength for the 'spectra' data}
 #'   \item{w.unit}{A character string of wavelength unit (default "nm")}
 #'   \item{data}{A data.frame of vegetation traits, here plant nitrogen content}
-#'   ...{currently not used}
+#'    \code{...{currently not used}}
 #' }
 #' @examples
 #' library(visa)
-#' data(NSpec.DB)
-#' str(NSpec.DB)
+#' data(NSpec.Lib)
+#' str(NSpec.Lib)
 #'
-"NSpec.DB"
+"NSpec.Lib"

@@ -6,8 +6,8 @@
 \alias{Spectra}
 \alias{Spectra,Spectra-class}
 \alias{as.spectra}
-\alias{as.spectra.database}
-\title{Create a Spectra or SpectraDatabase}
+\alias{as.spectra.library}
+\title{Create a Spectra or SpectraLibrary}
 \usage{
 as.spectra(
   spectra = matrix(0),
@@ -17,7 +17,7 @@ as.spectra(
   ...
 )
 
-as.spectra.database(
+as.spectra.library(
   spectra = matrix(0),
   wavelength = numeric(0),
   w.unit = "nm",
@@ -39,7 +39,7 @@ as.spectra.database(
 \description{
 Constructor \code{as.spectra} creates a Spectra object.
 
-Constructor \code{as.spectra.database} creates a SpectraDatabase object.
+Constructor \code{as.spectra.library} creates a SpectraLibrary object.
 }
 \section{Slots}{
 
@@ -57,6 +57,6 @@ Constructor \code{as.spectra.database} creates a SpectraDatabase object.
 s <- as.spectra(matrix(1:100, 4), 1:25, "nm", data.frame(x = letters[1:4]))
 str(s)
 
-s <- as.spectra.database(matrix(1:100, 4), 1:25, "nm", data.frame(x = letters[1:4]))
+s <- as.spectra.library(matrix(1:100, 4), 1:25, "nm", data.frame(x = letters[1:4]))
 str(s)
 }

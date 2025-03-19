@@ -3,8 +3,8 @@
 \docType{data}
 \name{NSpec.DF}
 \alias{NSpec.DF}
-\alias{Data-SpectraDataFrame}
-\title{Example data in the SpectraDataFrame format}
+\alias{Data-Spectra.Dataframe}
+\title{Example data in the Spectra.Dataframe format}
 \format{
 A data frame with 19 rows and 2 variables:
 
@@ -27,6 +27,6 @@ data(NSpec.DF)
 str(NSpec.DF)
 }
 \seealso{
-\link{data.frame} and \code{\link{NSpec.DB}}
+\link{data.frame} and \code{\link{NSpec.Lib}}
 }
 \keyword{datasets}
